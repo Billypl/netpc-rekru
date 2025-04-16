@@ -1,4 +1,4 @@
-﻿using ContactsAPI.Entities;
+﻿using ContactsAPI.Repositories.Entities;
 
 namespace ContactsAPI.Database
 {
@@ -27,9 +27,9 @@ namespace ContactsAPI.Database
         private IEnumerable<Contact> getContacts()
         {
             // Przykładowe kategorie
-            var privateCategory = new Category { Type = ContactCategory.Private };
-            var businessCategory = new Category { Type = ContactCategory.Business };
-            var otherCategory = new Category { Type = ContactCategory.Other };
+            var privateCategory = new Category { Type = ContactCategoryType.Private };
+            var businessCategory = new Category { Type = ContactCategoryType.Business };
+            var otherCategory = new Category { Type = ContactCategoryType.Other };
 
             // Przykładowe podkategorie
             var bossSubcategory = new Subcategory

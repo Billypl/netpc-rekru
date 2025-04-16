@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ContactsAPI.Entities
+namespace ContactsAPI.Repositories.Entities
 {
     public class Category
     {
@@ -8,10 +8,10 @@ namespace ContactsAPI.Entities
 
         [Required]
         [MaxLength(1024)]
-        public ContactCategory Type { get; set; }
+        public ContactCategoryType Type { get; set; }
 
     }
-    public enum ContactCategory
+    public enum ContactCategoryType
     {
         Private,
         Business,

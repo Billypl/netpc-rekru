@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ContactsAPI.Entities
+namespace ContactsAPI.Repositories.Entities
 {
     public class Subcategory
     {

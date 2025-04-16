@@ -1,11 +1,12 @@
-﻿using ContactsAPI.Entities;
-using ContactsAPI.Repositories;
+﻿using ContactsAPI.Repositories;
+using ContactsAPI.Repositories.DTOs;
+using ContactsAPI.Repositories.Entities;
 
 namespace ContactsAPI.Services
 {
     public interface IContactService
     {
-        IEnumerable<Contact> GetAll();
+        IEnumerable<ContactDto> GetAll();
         Contact GetById(int id);
         int Add();
         void Update();
@@ -16,7 +17,7 @@ namespace ContactsAPI.Services
     {
         private readonly IContactsRepository _contactsRepository = contactsRepository;
 
-        public IEnumerable<Contact> GetAll()
+        public IEnumerable<ContactDto> GetAll()
         {
             return _contactsRepository.GetAll();
         }

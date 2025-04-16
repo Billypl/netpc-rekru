@@ -1,24 +1,27 @@
 ﻿using ContactsAPI.Database;
-using ContactsAPI.Entities;
+using ContactsAPI.Repositories.DTOs;
+using ContactsAPI.Repositories.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContactsAPI.Repositories
 {
     public interface IContactsRepository
     {
-        List<Contact> GetAll();
+        List<ContactDto> GetAll();
     }
 
     public class ContactsRepository(ContactsDbContext dbContext) : IContactsRepository
     {
         private readonly ContactsDbContext _dbContext = dbContext;
 
-        public List<Contact> GetAll()
+        public List<ContactDto> GetAll()
         {
-            return _dbContext.Contacts
+            var contacts = _dbContext.Contacts
                 .Include(c => c.Category)
                 .Include(c => c.Subcategory)
                 .ToList();
+
+            return ContactDto.MapToDtos(contacts);
         }
     }
 }
