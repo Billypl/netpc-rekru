@@ -1,0 +1,33 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table persons {
+  id            int           [pk, increment] 
+  first_name    varchar(64)                                  
+  last_name     varchar(64)                                
+  birth_date    date                                          
+  gender        char(1)        // 'M' lub 'F'                 
+  salary        decimal(12,2)                               
+
+  mother_id     int           [ref: > persons.id, null]             
+  father_id     int           [ref: > persons.id, null]             
+}
+
+Table enterprises {
+  id            int           [pk, increment]                
+  name          varchar(256)                                
+  president_id  int           [ref: > persons.id]            
+}
+
+Table employments {                                     
+  id            int           [pk, increment]
+  person_id     int           [ref: > persons.id]       
+  enterprise_id int           [ref: > enterprises.id]      
+  contract_type varchar(20)                      
+}
+
+Table marriages {                                    
+  id            int           [pk, increment]
+  husband_id    int           [ref: - persons.id, unique]               
+  wife_id       int           [ref: - persons.id, unique]  
+}

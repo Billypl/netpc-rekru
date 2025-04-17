@@ -8,7 +8,7 @@ namespace ContactsAPI.Services
     {
         IEnumerable<ContactDto> GetAll();
         ContactDto GetById(int id);
-        int Add();
+        int Add(int id, ContactDto contactDto);
         void Update();
         void Delete();
     }
@@ -28,13 +28,13 @@ namespace ContactsAPI.Services
             var contact = _contactsRepository.GetById(id);
             if (contact is null)
             {
-                throw new NotFoundException("Restaurant not found");
+                throw new NotFoundException("Contact not found");
             }
 
             return ContactDto.MapToDto(contact);
         }
 
-        public int Add()
+        public int Add(int id, ContactDto contactDto)
         {
             throw new NotImplementedException();
         }
