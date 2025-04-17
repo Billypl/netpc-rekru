@@ -1,4 +1,4 @@
-﻿using ContactsAPI.Repositories.Entities;
+﻿using ContactsAPI.Models.Entities;
 
 namespace ContactsAPI.Database
 {

@@ -1,4 +1,4 @@
-﻿using ContactsAPI.Repositories.Entities;
+﻿using ContactsAPI.Models.Entities;
 using ContactsAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +6,9 @@ namespace ContactsAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ContactsController(IContactService contactService, ILogger<ContactsController> logger) : ControllerBase
+    public class ContactsController(IContactService contactService) : ControllerBase
     {
         private readonly IContactService _contactService = contactService;
-        private readonly ILogger<ContactsController> _logger = logger;
 
         [HttpGet]
         public ActionResult<IEnumerable<Contact>> GetAll()

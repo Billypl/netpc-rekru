@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ContactsAPI.Repositories.Entities
+namespace ContactsAPI.Models.Entities
 {
     public class Category
     {

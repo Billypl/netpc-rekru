@@ -1,7 +1,7 @@
-﻿using ContactsAPI.Repositories.Entities;
+﻿using ContactsAPI.Models.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace ContactsAPI.Repositories.DTOs
+namespace ContactsAPI.Models.DTOs
 {
     public class ContactDto
     {
@@ -11,7 +11,7 @@ namespace ContactsAPI.Repositories.DTOs
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }
         public ContactCategoryType Category { get; set; }
-        public string? SubcategoryName { get; set; }
+        public string? Subcategory { get; set; }
 
         public static ContactDto MapToDto(Contact contact)
         {
@@ -23,7 +23,7 @@ namespace ContactsAPI.Repositories.DTOs
                 BirthDate = contact.BirthDate,
                 PhoneNumber = contact.PhoneNumber,
                 Category = contact.Category.Type,
-                SubcategoryName = contact.Subcategory?.Name
+                Subcategory = contact.Subcategory?.Name
             };
         }
 

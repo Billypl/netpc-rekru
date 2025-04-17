@@ -1,13 +1,13 @@
-﻿using ContactsAPI.Repositories;
-using ContactsAPI.Repositories.DTOs;
-using ContactsAPI.Repositories.Entities;
+﻿using ContactsAPI.Exceptions;
+using ContactsAPI.Models.DTOs;
+using ContactsAPI.Repositories;
 
 namespace ContactsAPI.Services
 {
     public interface IContactService
     {
         IEnumerable<ContactDto> GetAll();
-        Contact GetById(int id);
+        ContactDto GetById(int id);
         int Add();
         void Update();
         void Delete();
@@ -19,12 +19,19 @@ namespace ContactsAPI.Services
 
         public IEnumerable<ContactDto> GetAll()
         {
-            return _contactsRepository.GetAll();
+            var contacts = _contactsRepository.GetAll();
+            return ContactDto.MapToDtos(contacts);
         }
 
-        public Contact GetById(int id)
+        public ContactDto GetById(int id)
         {
-            throw new NotImplementedException();
+            var contact = _contactsRepository.GetById(id);
+            if (contact is null)
+            {
+                throw new NotFoundException("Restaurant not found");
+            }
+
+            return ContactDto.MapToDto(contact);
         }
 
         public int Add()
