@@ -8,7 +8,7 @@ namespace ContactsAPI.Services
     {
         IEnumerable<ContactDto> GetAll();
         ContactDto GetById(int id);
-        int Add(int id, ContactDto contactDto);
+        int Add(ContactDto contactDto);
         void Update();
         void Delete();
     }
@@ -34,7 +34,7 @@ namespace ContactsAPI.Services
             return ContactDto.MapToDto(contact);
         }
 
-        public int Add(int id, ContactDto contactDto)
+        public int Add(ContactDto contactDto)
         {
             throw new NotImplementedException();
         }

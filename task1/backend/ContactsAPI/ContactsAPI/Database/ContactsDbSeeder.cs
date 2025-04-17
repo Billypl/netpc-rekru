@@ -27,17 +27,17 @@ namespace ContactsAPI.Database
         private IEnumerable<Contact> getContacts()
         {
             // Przykładowe kategorie
-            var privateCategory = new Category { Type = ContactCategoryType.Private };
-            var businessCategory = new Category { Type = ContactCategoryType.Business };
-            var otherCategory = new Category { Type = ContactCategoryType.Other };
+            var privateCategory = new Category { Name = "private" };
+            var businessCategory = new Category { Name = "business"};
+            var otherCategory = new Category { Name = "other" };
 
             // Przykładowe podkategorie
             var bossSubcategory = new Subcategory
-                { Name = "boss", Type = ContactSubcategoryType.FromDictionary, Category = businessCategory };
+                { Name = "boss", Category = businessCategory };
             var clientSubcategory = new Subcategory
-                { Name = "client", Type = ContactSubcategoryType.FromDictionary, Category = businessCategory };
+                { Name = "client", Category = businessCategory };
             var hobbySubcategory = new Subcategory
-                { Name = "hobby", Type = ContactSubcategoryType.FreeText, Category = otherCategory };
+                { Name = "hobby", Category = otherCategory };
 
             // Lista kontaktów
             var contacts = new List<Contact>

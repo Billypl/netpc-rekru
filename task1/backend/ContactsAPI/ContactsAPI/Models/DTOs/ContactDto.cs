@@ -10,7 +10,7 @@ namespace ContactsAPI.Models.DTOs
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }
-        public ContactCategoryType Category { get; set; }
+        public string Category { get; set; }
         public string? Subcategory { get; set; }
 
         public static ContactDto MapToDto(Contact contact)
@@ -22,7 +22,7 @@ namespace ContactsAPI.Models.DTOs
                 LastName = contact.LastName,
                 BirthDate = contact.BirthDate,
                 PhoneNumber = contact.PhoneNumber,
-                Category = contact.Category.Type,
+                Category = contact.Category.Name,
                 Subcategory = contact.Subcategory?.Name
             };
         }

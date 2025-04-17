@@ -7,8 +7,8 @@ namespace ContactsAPI.Models.Entities
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(1024)]
-        public ContactCategoryType Type { get; set; }
+        [MaxLength(128)]
+        public string Name { get; set; }
 
     }
     public enum ContactCategoryType
