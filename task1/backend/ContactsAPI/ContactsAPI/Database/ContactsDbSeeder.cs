@@ -46,7 +46,7 @@ namespace ContactsAPI.Database
                 {
                     FirstName = "Anna",
                     LastName = "Nowak",
-                    BirthDate = new DateTime(1995, 5, 12),
+                    BirthDate = "1995-05-12",
                     PhoneNumber = "+48123456789",
                     Category = businessCategory,
                     Subcategory = bossSubcategory,
@@ -55,7 +55,7 @@ namespace ContactsAPI.Database
                 {
                     FirstName = "Jan",
                     LastName = "Kowalski",
-                    BirthDate = new DateTime(1990, 3, 8),
+                    BirthDate = "1990-03-08",
                     PhoneNumber = "+48987654321",
                     Category = businessCategory,
                     Subcategory = clientSubcategory,
@@ -64,7 +64,7 @@ namespace ContactsAPI.Database
                 {
                     FirstName = "Ewa",
                     LastName = "Wiśniewska",
-                    BirthDate = new DateTime(2000, 12, 24),
+                    BirthDate = "2000-12-24",
                     PhoneNumber = "+48765432109",
                     Category = otherCategory,
                     Subcategory = hobbySubcategory,
@@ -73,7 +73,7 @@ namespace ContactsAPI.Database
                 {
                     FirstName = "Marek",
                     LastName = "Zieliński",
-                    BirthDate = new DateTime(1988, 7, 4),
+                    BirthDate = "1988-07-04",
                     PhoneNumber = "+48555123456",
                     Category = privateCategory,
                     Subcategory = null,

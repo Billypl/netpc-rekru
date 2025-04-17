@@ -1,6 +1,8 @@
-﻿using ContactsAPI.Models.Entities;
+﻿using ContactsAPI.Models.DTOs;
+using ContactsAPI.Models.Entities;
 using ContactsAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace ContactsAPI.Controllers
 {
@@ -22,6 +24,13 @@ namespace ContactsAPI.Controllers
         {
             var contact = _contactService.GetById(id);
             return Ok(contact);
+        }
+
+        [HttpPost]
+        public ActionResult<ContactDto> CreateContact(CreateContactDto dto)
+        {
+            int contactId = _contactService.Add(dto);
+            return Created($"/api/contacts/{contactId}", null);
         }
     }
 }

@@ -11,9 +11,9 @@ namespace ContactsAPI.Models.Entities
         public string FirstName { get; set; }
 
         [MaxLength(128)]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        public string? BirthDate { get; set; }
 
         [Required]
         [Phone]

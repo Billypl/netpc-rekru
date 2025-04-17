@@ -8,6 +8,7 @@ namespace ContactsAPI.Repositories
     {
         List<Contact> GetAll();
         Contact GetById(int id);
+        int Add(Contact contact);
     }
 
     public class ContactsRepository(ContactsDbContext dbContext) : IContactsRepository
@@ -30,6 +31,13 @@ namespace ContactsAPI.Repositories
                 .Include(c => c.Subcategory)
                 .FirstOrDefault(c => id == c.Id);
             return contact;
+        }
+
+        public int Add(Contact contact)
+        {
+            _dbContext.Contacts.Add(contact);
+            _dbContext.SaveChanges();
+            return contact.Id;
         }
     }
 }
