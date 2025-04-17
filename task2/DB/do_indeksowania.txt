@@ -1,0 +1,6 @@
+persons(mother_id);
+persons(father_id);
+employments(enterprise_id);
+employments(person_id);
+marriages(husband_id);
+marriages(wife_id);
