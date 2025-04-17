@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ContactsAPI.Models.DTOs
 {
-    public class ContactDto
+    public class ViewContactDto
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -13,9 +13,9 @@ namespace ContactsAPI.Models.DTOs
         public string Category { get; set; }
         public string? Subcategory { get; set; }
 
-        public static ContactDto MapToDto(Contact contact)
+        public static ViewContactDto MapToDto(Contact contact)
         {
-            return new ContactDto
+            return new ViewContactDto
             {
                 Id = contact.Id,
                 FirstName = contact.FirstName,
@@ -27,7 +27,7 @@ namespace ContactsAPI.Models.DTOs
             };
         }
 
-        public static List<ContactDto> MapToDtos(IEnumerable<Contact> contacts)
+        public static List<ViewContactDto> MapToDtos(IEnumerable<Contact> contacts)
         {
             return contacts.Select(MapToDto).ToList();
         }

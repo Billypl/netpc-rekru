@@ -9,6 +9,9 @@ namespace ContactsAPI.Repositories
         List<Contact> GetAll();
         Contact GetById(int id);
         int Add(Contact contact);
+        void Delete(Contact contact);
+        void SaveChanges();
+
     }
 
     public class ContactsRepository(ContactsDbContext dbContext) : IContactsRepository
@@ -38,6 +41,17 @@ namespace ContactsAPI.Repositories
             _dbContext.Contacts.Add(contact);
             _dbContext.SaveChanges();
             return contact.Id;
+        }
+
+        public void Delete(Contact contact)
+        {
+            _dbContext.Contacts.Remove(contact);
+            _dbContext.SaveChanges();
+        }
+
+        public void SaveChanges()
+        {
+            _dbContext.SaveChanges();
         }
     }
 }

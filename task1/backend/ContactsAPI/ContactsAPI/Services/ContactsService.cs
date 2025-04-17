@@ -6,24 +6,24 @@ namespace ContactsAPI.Services
 {
     public interface IContactService
     {
-        IEnumerable<ContactDto> GetAll();
-        ContactDto GetById(int id);
+        IEnumerable<ViewContactDto> GetAll();
+        ViewContactDto GetById(int id);
         int Add(CreateContactDto contactDto);
-        void Update();
-        void Delete();
+        void Update(int id, UpdateContactDto dto);
+        void Delete(int id);
     }
 
     public class ContactsService(IContactsRepository contactsRepository) : IContactService
     {
         private readonly IContactsRepository _contactsRepository = contactsRepository;
 
-        public IEnumerable<ContactDto> GetAll()
+        public IEnumerable<ViewContactDto> GetAll()
         {
             var contacts = _contactsRepository.GetAll();
-            return ContactDto.MapToDtos(contacts);
+            return ViewContactDto.MapToDtos(contacts);
         }
 
-        public ContactDto GetById(int id)
+        public ViewContactDto GetById(int id)
         {
             var contact = _contactsRepository.GetById(id);
             if (contact is null)
@@ -31,7 +31,7 @@ namespace ContactsAPI.Services
                 throw new NotFoundException("Contact not found");
             }
 
-            return ContactDto.MapToDto(contact);
+            return ViewContactDto.MapToDto(contact);
         }
 
         public int Add(CreateContactDto contactDto)
@@ -40,14 +40,25 @@ namespace ContactsAPI.Services
             return contactId;
         }
 
-        public void Update()
+        public void Update(int id, UpdateContactDto dto)
         {
-            throw new NotImplementedException();
+            var contact = _contactsRepository.GetById(id);
+            if (contact is null)
+            {
+                throw new NotFoundException("Contact not found");
+            }
+            UpdateContactDto.MapToEntity(dto, contact);
+            _contactsRepository.SaveChanges();
         }
 
-        public void Delete()
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var contact = _contactsRepository.GetById(id);
+            if (contact is null)
+            {
+                throw new NotFoundException("Contact not found");
+            }
+            _contactsRepository.Delete(contact);
         }
     }
 }

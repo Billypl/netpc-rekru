@@ -27,10 +27,24 @@ namespace ContactsAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ContactDto> CreateContact(CreateContactDto dto)
+        public ActionResult Add([FromBody] CreateContactDto dto)
         {
             int contactId = _contactService.Add(dto);
             return Created($"/api/contacts/{contactId}", null);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult Update([FromRoute] int id, [FromBody] UpdateContactDto dto)
+        {
+            _contactService.Update(id, dto);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete([FromRoute] int id)
+        {
+            _contactService.Delete(id);
+            return NoContent();
         }
     }
 }

@@ -23,12 +23,5 @@ namespace ContactsAPI.Models.DTOs
                 SubcategoryId = dto.SubcategoryId
             };
         }
-
-        // create json string based on createcontactdto with example data
-
-
-
-
-
     }
 }

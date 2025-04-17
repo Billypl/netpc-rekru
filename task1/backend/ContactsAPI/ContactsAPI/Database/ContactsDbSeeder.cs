@@ -26,12 +26,10 @@ namespace ContactsAPI.Database
 
         private IEnumerable<Contact> getContacts()
         {
-            // Przykładowe kategorie
             var privateCategory = new Category { Name = "private" };
             var businessCategory = new Category { Name = "business"};
             var otherCategory = new Category { Name = "other" };
 
-            // Przykładowe podkategorie
             var bossSubcategory = new Subcategory
                 { Name = "boss", Category = businessCategory };
             var clientSubcategory = new Subcategory
@@ -39,7 +37,6 @@ namespace ContactsAPI.Database
             var hobbySubcategory = new Subcategory
                 { Name = "hobby", Category = otherCategory };
 
-            // Lista kontaktów
             var contacts = new List<Contact>
             {
                 new Contact
