@@ -7,8 +7,7 @@ using System;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers()
-    .AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
+builder.Services.AddControllers();
 ;
 builder.Services.AddDbContext<ContactsDbContext>();
 builder.Services.AddScoped<ContactsDbSeeder>();
@@ -17,6 +16,8 @@ builder.Services.AddScoped<ErrorHandlerMiddleware>();
 
 builder.Services.AddScoped<IContactService, ContactsService>();
 builder.Services.AddScoped<IContactsRepository, ContactsRepository>();
+builder.Services.AddScoped<ICategoriesService, CategoriesService>();
+builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 
 var app = builder.Build();
 var seeder = app.Services.CreateScope().ServiceProvider.GetRequiredService<ContactsDbSeeder>();

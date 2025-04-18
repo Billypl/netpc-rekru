@@ -7,11 +7,10 @@ namespace ContactsAPI.Repositories
     public interface IContactsRepository
     {
         List<Contact> GetAll();
-        Contact GetById(int id);
+        Contact? GetById(int id);
         int Add(Contact contact);
         void Delete(Contact contact);
         void SaveChanges();
-
     }
 
     public class ContactsRepository(ContactsDbContext dbContext) : IContactsRepository
@@ -27,7 +26,7 @@ namespace ContactsAPI.Repositories
             return contacts;
         }
 
-        public Contact GetById(int id)
+        public Contact? GetById(int id)
         {
             var contact = _dbContext.Contacts
                 .Include(c => c.Category)

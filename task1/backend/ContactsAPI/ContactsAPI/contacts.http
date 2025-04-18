@@ -1,0 +1,75 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@baseUrl = https://localhost:7137/api/contacts
+
+### Get all contacts
+GET {{baseUrl}} HTTP/1.1
+Accept: application/json
+
+### Get contact by ID (existing)
+GET {{baseUrl}}/1 HTTP/1.1
+Accept: application/json
+
+### Get contact by ID (non-existing)
+GET {{baseUrl}}/999 HTTP/1.1
+Accept: application/json
+
+### Create new contact
+POST {{baseUrl}} HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "AA",
+  "lastName": "aa",
+  "birthDate": "1990-01-01",
+  "phoneNumber": "+1234567890",
+  "categoryId": 1,
+  "subcategoryId": 1
+}
+
+### Get all contacts
+GET {{baseUrl}} HTTP/1.1
+Accept: application/json
+
+### Update existing contact
+PUT {{baseUrl}}/1 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "birthDate": "1990-01-01",
+  "phoneNumber": "+1234567890",
+  "categoryId": 1,
+  "subcategoryId": 1
+}
+
+### Get all contacts
+GET {{baseUrl}} HTTP/1.1
+Accept: application/json
+
+### Update non-existing contact
+PUT {{baseUrl}}/999 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Non",
+  "lastName": "Existing",
+  "birthDate": "2000-01-01",
+  "phoneNumber": "+9876543210",
+  "categoryId": 2
+}
+
+### Delete existing contact
+DELETE {{baseUrl}}/1 HTTP/1.1
+Accept: application/json
+
+### Get all contacts
+GET {{baseUrl}} HTTP/1.1
+Accept: application/json
+
+### Delete non-existing contact
+DELETE {{baseUrl}}/999 HTTP/1.1
+Accept: application/json

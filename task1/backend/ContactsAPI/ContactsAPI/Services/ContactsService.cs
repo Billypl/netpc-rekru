@@ -1,5 +1,6 @@
 ﻿using ContactsAPI.Exceptions;
 using ContactsAPI.Models.DTOs;
+using ContactsAPI.Models.Entities;
 using ContactsAPI.Repositories;
 
 namespace ContactsAPI.Services
@@ -25,12 +26,7 @@ namespace ContactsAPI.Services
 
         public ViewContactDto GetById(int id)
         {
-            var contact = _contactsRepository.GetById(id);
-            if (contact is null)
-            {
-                throw new NotFoundException("Contact not found");
-            }
-
+            var contact = GetContactById(id);
             return ViewContactDto.MapToDto(contact);
         }
 
@@ -42,23 +38,25 @@ namespace ContactsAPI.Services
 
         public void Update(int id, UpdateContactDto dto)
         {
-            var contact = _contactsRepository.GetById(id);
-            if (contact is null)
-            {
-                throw new NotFoundException("Contact not found");
-            }
+            var contact = GetContactById(id);
             UpdateContactDto.MapToEntity(dto, contact);
             _contactsRepository.SaveChanges();
         }
 
         public void Delete(int id)
         {
+            var contact = GetContactById(id);
+            _contactsRepository.Delete(contact);
+        }
+
+        private Contact GetContactById(int id)
+        {
             var contact = _contactsRepository.GetById(id);
             if (contact is null)
             {
-                throw new NotFoundException("Contact not found");
+                throw new NotFoundException($"Contact with id {id} not found");
             }
-            _contactsRepository.Delete(contact);
+            return contact;
         }
     }
 }
