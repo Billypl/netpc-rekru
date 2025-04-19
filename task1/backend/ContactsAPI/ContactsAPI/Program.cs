@@ -18,6 +18,8 @@ builder.Services.AddScoped<IContactService, ContactsService>();
 builder.Services.AddScoped<IContactsRepository, ContactsRepository>();
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+builder.Services.AddScoped<ISubcategoriesService, SubcategoriesService>();
+builder.Services.AddScoped<ISubcategoriesRepository, SubcategoriesRepository>();
 
 var app = builder.Build();
 var seeder = app.Services.CreateScope().ServiceProvider.GetRequiredService<ContactsDbSeeder>();

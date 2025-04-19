@@ -40,14 +40,11 @@ namespace ContactsAPI.Models.DTOs
     {
         [Required]
         [MaxLength(128)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public static Category MapToEntity(CategoryUpdateDto dto)
+        public static void MapToEntity(CategoryUpdateDto dto, Category category)
         {
-            return new Category
-            {
-                Name = dto.Name
-            };
+            category.Name = dto.Name ?? category.Name;
         }
     }
 }

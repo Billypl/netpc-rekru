@@ -39,7 +39,7 @@ namespace ContactsAPI.Services
         public void Update(int id, CategoryUpdateDto dto)
         {
             var category = GetCategoryById(id);
-            category.Name = dto.Name;
+            CategoryUpdateDto.MapToEntity(dto, category);
             _categoriesRepository.SaveChanges();
         }
 
