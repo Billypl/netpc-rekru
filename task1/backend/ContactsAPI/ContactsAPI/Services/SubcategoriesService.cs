@@ -32,6 +32,7 @@ namespace ContactsAPI.Services
 
         public int Add(SubcategoryCreateDto contactDto)
         {
+            // todo: add predefined category validation
             var subcategory = SubcategoryCreateDto.MapToEntity(contactDto);
             int subcategoryId = _subcategoriesRepository.Add(subcategory);
             return subcategoryId;
