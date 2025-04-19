@@ -13,28 +13,28 @@ namespace ContactsAPI.Controllers
         private readonly ICategoriesService _categoriesService = categoriesService;
 
         [HttpGet]
-        public ActionResult<IEnumerable<Category>> GetAll()
+        public ActionResult<IEnumerable<CategoryViewDto>> GetAll()
         {
             var categories = _categoriesService.GetAll();
             return Ok(categories);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Category> GetById([FromRoute] int id)
+        public ActionResult<CategoryViewDto> GetById([FromRoute] int id)
         {
             var category = _categoriesService.GetById(id);
             return Ok(category);
         }
 
         [HttpPost]
-        public ActionResult Add([FromBody] CategoryDto dto)
+        public ActionResult Add([FromBody] CategoryCreateDto dto)
         {
             int categoryId = _categoriesService.Add(dto);
             return Created($"/api/categories/{categoryId}", null);
         }
 
         [HttpPut("{id}")]
-        public ActionResult Update([FromRoute] int id, [FromBody] CategoryDto dto)
+        public ActionResult Update([FromRoute] int id, [FromBody] CategoryUpdateDto dto)
         {
             _categoriesService.Update(id, dto);
             return Ok();

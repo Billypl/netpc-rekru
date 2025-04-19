@@ -7,10 +7,10 @@ namespace ContactsAPI.Services
 {
     public interface ICategoriesService
     {
-        IEnumerable<Category> GetAll();
-        Category GetById(int id);
-        int Add(CategoryDto dto);
-        void Update(int id, CategoryDto dto);
+        IEnumerable<CategoryViewDto> GetAll();
+        CategoryViewDto GetById(int id);
+        int Add(CategoryCreateDto dto);
+        void Update(int id, CategoryUpdateDto dto);
         void Delete(int id);
     }
 
@@ -18,25 +18,25 @@ namespace ContactsAPI.Services
     {
         private readonly ICategoriesRepository _categoriesRepository = categoriesRepository;
 
-        public IEnumerable<Category> GetAll()
+        public IEnumerable<CategoryViewDto> GetAll()
         {
             var categories = _categoriesRepository.GetAll();
-            return categories;
+            return CategoryViewDto.MapToDtos(categories);
         }
 
-        public Category GetById(int id)
+        public CategoryViewDto GetById(int id)
         {
-            return GetCategoryById(id);
+            return CategoryViewDto.MapToDto(GetCategoryById(id));
         }
 
-        public int Add(CategoryDto dto)
+        public int Add(CategoryCreateDto dto)
         {
-            var category = CategoryDto.MapToEntity(dto);
+            var category = CategoryCreateDto.MapToEntity(dto);
             int categoryId = _categoriesRepository.Add(category);
             return categoryId;
         }
 
-        public void Update(int id, CategoryDto dto)
+        public void Update(int id, CategoryUpdateDto dto)
         {
             var category = GetCategoryById(id);
             category.Name = dto.Name;

@@ -7,10 +7,10 @@ namespace ContactsAPI.Services
 {
     public interface IContactService
     {
-        IEnumerable<ViewContactDto> GetAll();
-        ViewContactDto GetById(int id);
-        int Add(CreateContactDto contactDto);
-        void Update(int id, UpdateContactDto dto);
+        IEnumerable<ContactViewDto> GetAll();
+        ContactViewDto GetById(int id);
+        int Add(ContactCreateDto dto);
+        void Update(int id, ContactUpdateDto dto);
         void Delete(int id);
     }
 
@@ -18,28 +18,28 @@ namespace ContactsAPI.Services
     {
         private readonly IContactsRepository _contactsRepository = contactsRepository;
 
-        public IEnumerable<ViewContactDto> GetAll()
+        public IEnumerable<ContactViewDto> GetAll()
         {
             var contacts = _contactsRepository.GetAll();
-            return ViewContactDto.MapToDtos(contacts);
+            return ContactViewDto.MapToDtos(contacts);
         }
 
-        public ViewContactDto GetById(int id)
+        public ContactViewDto GetById(int id)
         {
             var contact = GetContactById(id);
-            return ViewContactDto.MapToDto(contact);
+            return ContactViewDto.MapToDto(contact);
         }
 
-        public int Add(CreateContactDto contactDto)
+        public int Add(ContactCreateDto dto)
         {
-            int contactId = _contactsRepository.Add(CreateContactDto.MapToEntity(contactDto));
+            int contactId = _contactsRepository.Add(ContactCreateDto.MapToEntity(dto));
             return contactId;
         }
 
-        public void Update(int id, UpdateContactDto dto)
+        public void Update(int id, ContactUpdateDto dto)
         {
             var contact = GetContactById(id);
-            UpdateContactDto.MapToEntity(dto, contact);
+            ContactUpdateDto.MapToEntity(dto, contact);
             _contactsRepository.SaveChanges();
         }
 

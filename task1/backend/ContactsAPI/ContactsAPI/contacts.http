@@ -19,8 +19,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "firstName": "AA",
-  "lastName": "aa",
+  "firstName": "New",
+  "lastName": "Contact",
   "birthDate": "1990-01-01",
   "phoneNumber": "+1234567890",
   "categoryId": 1,
@@ -37,8 +37,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "firstName": "John",
-  "lastName": "Smith",
+  "firstName": "New",
+  "lastName": "Name",
   "birthDate": "1990-01-01",
   "phoneNumber": "+1234567890",
   "categoryId": 1,

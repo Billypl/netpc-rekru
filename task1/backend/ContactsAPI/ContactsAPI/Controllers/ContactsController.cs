@@ -27,14 +27,14 @@ namespace ContactsAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add([FromBody] CreateContactDto dto)
+        public ActionResult Add([FromBody] ContactCreateDto dto)
         {
             int contactId = _contactService.Add(dto);
             return Created($"/api/contacts/{contactId}", null);
         }
 
         [HttpPut("{id}")]
-        public ActionResult Update([FromRoute] int id, [FromBody] UpdateContactDto dto)
+        public ActionResult Update([FromRoute] int id, [FromBody] ContactUpdateDto dto)
         {
             _contactService.Update(id, dto);
             return Ok();
